@@ -1,23 +1,4 @@
-# experiments
-This repo contains different source code. Not everything is complete, not everything is working.
-
-## keylogger
-To setup kbdflt on your system:
-
-On Win32 environment edit the reg key:
-
-`HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows`
-or  
-`HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows NT\CurrentVersion\Windows`
-on win64
-
-* AppInit_DLLs (REG_SZ) => put full path of kbdflt.dll;
-* LoadAppInit_DLLs (REG_DWORD) => 0x00000001
-* RequireSignedAppInit_DLLs (REG_DWORD) => 0x00000000
-
-Reminder: only data from "putty.exe" are stored inside %APPDATA%\pid_putty_random.txt
-
-## Middleware Pattern
+# Middleware Pattern
 
 From `ExpressJS`
 
@@ -113,25 +94,3 @@ bool caller(??, Fn next, Args... args)
 
 Now I'm stuck on this problem.. how define a <caller> template function which needs two set of variadic template parameters with a compiler which cannot identify where the first set end, what is the "next" and eventually the nexts...
 In case I'll figure out there will be an update.
-
-## thread_fork()
-
-This project is an excercise of "thread_fork" implementation;
-fork() is not supported on Win32;
-
-thread_fork() is an experiment of avoiding to start a child thread;
-
-Example:
-
-main thread:
-int *buffer = malloc(sizeof(int) * 1024 * 1024);    *// 1millions of integer*
-
-if (thread_fork() != 0) {
-	>[ child thread branch ]
-	>  // manipulate buffer....
-	>  free(buffer);	// the child thread will deallocate buffer
-	>   return;
-}
-
-.. other action on main thread..
-
