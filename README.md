@@ -135,3 +135,5 @@ if (thread_fork() != 0) {
 
 .. other action on main thread..
 
+## spidump
+SPI dump
